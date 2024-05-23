@@ -26,7 +26,7 @@ const SendEthModal = (props: Props) => {
             if(parseFloat(props.value) < parseFloat(e.target.value)){
                 throw new Error("Insufficent Ether");
             }else{
-                setWei(wei!);
+                setWei(wei?.toLowerCase());
             }
         }catch(e: any){
             console.log(e.message)
@@ -80,7 +80,7 @@ const SendEthModal = (props: Props) => {
                 <label htmlFor="modal-3" className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</label>
                 <div className="form-field w-full">
                     <label className="form-label text-xl">From</label>
-                    <input placeholder="Type here" value={props.from} type="email" className="input max-w-full text-lg" />
+                    <input placeholder="Type here" value={props.from.toLowerCase()} type="email" className="input max-w-full text-lg" />
                 </div>
 
                 <div className="form-field w-full">

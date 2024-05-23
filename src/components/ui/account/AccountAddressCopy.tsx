@@ -13,7 +13,7 @@ const AccountAddressCopy = (props: Props) => {
     <div>
         <span className="flex justify-center items-center gap-x-3 badge badge-flat-primary text-sm px-5 py-2  bg-blue-800 rounded-full bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10">
             <span className='text-blue-600 text-lg'>
-              {props.address && `${props.address.slice(0,5)}...${props.address.slice(-4)}`}  
+              {props.address && `${props.address.slice(0,5).toLowerCase()}...${props.address.slice(-4).toLowerCase()}`}  
             </span> 
             <Copy
               copy={()=> copyAdress(props.address!)}
