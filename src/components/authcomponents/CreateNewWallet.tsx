@@ -78,7 +78,7 @@ const SignUp = (props: Props) => {
     // router.push('/createnewwallet/verify');
   }
   return (
-    <div className="form-field w-2/6 relative -top-20 flex-col gap-y-5">
+    <div className="form-field w-5/6 md:w-2/6 relative -top-20 flex-col gap-y-5">
       {
         isFormField == true && props.phrasePage === true ? <Modal mnemonic={wallet?.mnemonic?.phrase} go={goToPhrasePage}  /> : ''
       }

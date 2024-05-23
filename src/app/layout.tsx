@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import NevigationBar from "@/components/ui/menu/NevigationBar";
+import Footer from "@/components/ui/footer/Footer";
 import "./globals.css";
 import StoreProvider from '@/store/StoreProvider'
 
@@ -24,6 +25,7 @@ export default function RootLayout({
           <div>
             {children}
           </div>
+          <Footer />
         </body>
       </html>
     </StoreProvider>

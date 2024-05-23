@@ -154,11 +154,11 @@ const MatchingPhrase = (props: Props) => {
             <h3>secret recovery phrase</h3>
         </div>
         <div className="form-group relative top-10">
-            <div className="form-control relative w-full grid grid-cols-3 gap-10 px-5">
+            <div className="form-control relative w-full grid grid-cols-3 gap-3 md:gap-10 px-3 md:px-5">
                 {
                     Object.entries(phrases).map((inputs,index)=>{
                         return <span key={index} className='flex gap-x-2 justify-center items-center'>
-                                    {index+1} <input onChange={(e)=> onChangeInputs(e,inputs[0])} name={inputs[0]} type="password" className="input input-lg max-w-52 bg-white text-black" placeholder="Enter password" />
+                                    {index+1} <input onChange={(e)=> onChangeInputs(e,inputs[0])} name={inputs[0]} type="password" className="input input-lg max-w-52 bg-white text-black" placeholder="Enter Phrase" />
                                 </span>
                     })
                 }

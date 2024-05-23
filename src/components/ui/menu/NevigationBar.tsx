@@ -9,13 +9,13 @@ type Props = {}
 const NevigationBar = (props: Props) => {
   return (
     <div className="navbar bg-violet-950">
-        <div className="navbar-start">
+        <div className="navbar-start w-full">
           <Image height={50} width={50} alt='' src={MetaMask} />
-          <Link href="/"><h3>METAMASK Clone</h3></Link>
+          <Link href="/"><h3 className='text-base md:tex-lg'>METAMASK Clone</h3></Link>
         </div>
-        <div className="navbar-end">
+        {/* <div className="navbar-end">
             <a className="navbar-item">Home</a>
-        </div>
+        </div> */}
     </div>
   )
 }
