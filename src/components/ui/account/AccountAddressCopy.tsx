@@ -4,7 +4,7 @@ type Props = {
     address?: string
 }
 export const copyAdress = (address: string) =>{
-  navigator.clipboard.writeText(address)
+  navigator.clipboard.writeText(address.toLowerCase())
 }
 
 const AccountAddressCopy = (props: Props) => {
