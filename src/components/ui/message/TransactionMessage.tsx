@@ -16,14 +16,14 @@ const TransactionMessage = (props: Props) => {
   const sendEther = async () => {
         console.log("Sending")
         try{
-            messageApi.open({
-                key,
-                type: 'loading',
-                content: 'Loading...',
-            });
             console.log("Checking account")
             const acc = localStorage.getItem('acc');
             if(acc && toAddress !== ''){
+                messageApi.open({
+                    key,
+                    type: 'loading',
+                    content: 'Loading...',
+                });
                 const account:HDNodeWallet = JSON.parse(acc);
                 console.log(account)
                 const privateKey = Wallet.fromPhrase(account.mnemonic?.phrase!)

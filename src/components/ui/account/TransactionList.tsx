@@ -35,7 +35,7 @@ const TransactionList = (props: Props) => {
         getAllTransaction();
     },[provider, address])
   return ( 
-        <>
+        <div className='pb-3 w-full flex flex-col justify-center items-center gap-y-5'>
             <h1 className='text-2xl text-blue-500 text-left'>Transactions</h1>
             {
                 allTransaction.length > 0 ? allTransaction.map((txn,i)=>{
@@ -50,7 +50,7 @@ const TransactionList = (props: Props) => {
                 }) : ''
             }
             
-        </>
+        </div>
   )
 }
 
