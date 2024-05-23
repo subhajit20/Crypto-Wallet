@@ -79,19 +79,19 @@ const SendEthModal = (props: Props) => {
             <div className="modal-content flex flex-col gap-5 w-full">
                 <label htmlFor="modal-3" className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</label>
                 <div className="form-field w-full">
-                    <label className="form-label text-xl">From</label>
+                    <label className="form-label text-base md:text-xl">From</label>
                     <input placeholder="Type here" value={props.from.toLowerCase()} type="email" className="input max-w-full text-lg" />
                 </div>
 
                 <div className="form-field w-full">
-                    <label className="form-label text-xl">To</label>
+                    <label className="form-label text-base md:text-xl">To</label>
 
                     <input placeholder="Type here" onChange={(e)=> setToAddress(e.target.value)} type="email" className="input max-w-full text-lg" />
                 </div>
 
                 <div className="form-field w-full">
-                    <label className="form-label text-xl">Balance - {props.value}ETH</label>
-                    <label className='form-label text-base text-red-500'>{err}</label>
+                    <label className="form-label text-base md:text-xl">Balance - {props.value}ETH</label>
+                    <label className='form-label text-base md:text-base text-red-500'>{err}</label>
                     <input placeholder="Type here" onChange={(e)=> onWeiChange(e)} type="number" className="input max-w-full text-lg" />
                 </div>
             
