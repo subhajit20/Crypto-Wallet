@@ -28,9 +28,9 @@ const SendEthModal = (props: Props) => {
             }else{
                 setWei(wei!);
             }
-        }catch(e){
-            console.log(e)
-            setErr("Insufficent Ether");
+        }catch(e: any){
+            console.log(e.message)
+            setErr(e.message);
         }finally{
             setTimeout(()=>{
                 setErr('')
@@ -38,39 +38,39 @@ const SendEthModal = (props: Props) => {
         }
     }
 
-    const SendEther = async () =>{
-        console.log("Sending")
-        try{
-            console.log("Checking account")
-            const acc = localStorage.getItem('acc');
-            if(acc && toAddress !== ''){
-                const account:HDNodeWallet = JSON.parse(acc);
-                console.log(account)
-                const privateKey = Wallet.fromPhrase(account.mnemonic?.phrase!)
-                const wallet = new Wallet(
-                    privateKey.privateKey,
-                    provider
-                )
-                const tx = {
-                    to: to!,
-                    value: wei,
-                };
-                console.log("Creating tx")
-                const txRes = await wallet.sendTransaction(tx);
+    // const SendEther = async () =>{
+    //     console.log("Sending")
+    //     try{
+    //         console.log("Checking account")
+    //         const acc = localStorage.getItem('acc');
+    //         if(acc && toAddress !== ''){
+    //             const account:HDNodeWallet = JSON.parse(acc);
+    //             console.log(account)
+    //             const privateKey = Wallet.fromPhrase(account.mnemonic?.phrase!)
+    //             const wallet = new Wallet(
+    //                 privateKey.privateKey,
+    //                 provider
+    //             )
+    //             const tx = {
+    //                 to: to!,
+    //                 value: wei,
+    //             };
+    //             console.log("Creating tx")
+    //             const txRes = await wallet.sendTransaction(tx);
 
-                console.log("Sent")
-                console.log(txRes)
-            }else{
-                console.log(toAddress)
-                console.log(acc)
-                console.log(parseFloat(wei!) <  parseFloat(value))
-            }
-        }catch(e){
-            console.log(e)
-        }finally{
+    //             console.log("Sent")
+    //             console.log(txRes)
+    //         }else{
+    //             console.log(toAddress)
+    //             console.log(acc)
+    //             console.log(parseFloat(wei!) <  parseFloat(value))
+    //         }
+    //     }catch(e){
+    //         console.log(e)
+    //     }finally{
                     
-        }
-    }
+    //     }
+    // }
   return (
     <div>
         <input className="modal-state" id="modal-3" type="checkbox" />

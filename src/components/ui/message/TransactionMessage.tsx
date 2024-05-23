@@ -1,6 +1,6 @@
 import React from 'react';
 import { message } from 'antd';
-import { Wallet,EtherscanProvider, HDNodeWallet } from 'ethers';
+import { Wallet,EtherscanProvider, HDNodeWallet, TransactionResponse } from 'ethers';
 import Error from 'next/error';
 
 type Props = {
@@ -9,14 +9,14 @@ type Props = {
     wei: string,
 }
 
-class WalletError extends Error{
-    errormsg:'';
-    constructor(message: string){
-        super(message);
-        this.errormsg = message;
-        this.name = "ValidationError";
-    }
-}
+// class WalletError extends Error{
+//     errormsg:'';
+//     constructor(message: string){
+//         super(message);
+//         this.errormsg = message;
+//         this.name = "ValidationError";
+//     }
+// }
 
 const TransactionMessage = (props: Props) => {
     const { toAddress, provider, wei } = props;
@@ -28,9 +28,9 @@ const TransactionMessage = (props: Props) => {
         try{
             console.log("Checking account")
             const acc = localStorage.getItem('acc');
-            if(acc && toAddress !== ''){
+            if(acc && toAddress !== '' && wei !== ''){
                 if(JSON.parse(acc).address === toAddress){
-                    throw new WalletError("From and To address should not be same!")
+                    throw "Receiver Address should not be same!!";
                 }
                 messageApi.open({
                     key,
@@ -49,25 +49,23 @@ const TransactionMessage = (props: Props) => {
                     value: wei,
                 };
                 console.log("Creating tx")
-                const txRes = await wallet.sendTransaction(tx);
+                const txRes:TransactionResponse = await wallet.sendTransaction(tx);
 
                 console.log("Sent")
                 console.log(txRes);
                 messageApi.open({
                     key,
                     type: 'success',
-                    content: 'Sent',
+                    content: `Successfully sent ether to ${txRes.to}`,
                 });
             }else{
-                throw new WalletError("Fill all the required values");
+                throw "Fill all the required fields below!!";
             }
-        }catch(e){
-            if(e instanceof WalletError){
+        }catch(e: any){
                 messageApi.open({
                     type: 'error',
-                    content: e.errormsg,
+                    content: e,
                 });
-            }
         }
   };
 

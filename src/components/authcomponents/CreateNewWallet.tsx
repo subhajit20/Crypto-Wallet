@@ -47,7 +47,7 @@ const SignUp = (props: Props) => {
                 })
               )
             localStorage.setItem('acc',JSON.stringify(_wallet));
-            router.push(props.routename);
+            // router.push(props.routename);
           }
         }else{
             setIsFormField(false);
@@ -66,6 +66,7 @@ const SignUp = (props: Props) => {
   }
 
   const onPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) =>{
+    // console.log(/^([a-z])[!@#$%^&*]{1,2}/g.exec(e.target.value))
     dispatch(
       setPassword({
         password:e.target.value
