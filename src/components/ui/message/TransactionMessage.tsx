@@ -1,11 +1,21 @@
 import React from 'react';
 import { message } from 'antd';
 import { Wallet,EtherscanProvider, HDNodeWallet } from 'ethers';
+import Error from 'next/error';
 
 type Props = {
     toAddress: string,
     provider:EtherscanProvider,
     wei: string,
+}
+
+class WalletError extends Error{
+    errormsg:'';
+    constructor(message: string){
+        super(message);
+        this.errormsg = message;
+        this.name = "ValidationError";
+    }
 }
 
 const TransactionMessage = (props: Props) => {
@@ -19,6 +29,9 @@ const TransactionMessage = (props: Props) => {
             console.log("Checking account")
             const acc = localStorage.getItem('acc');
             if(acc && toAddress !== ''){
+                if(JSON.parse(acc).address === toAddress){
+                    throw new WalletError("From and To address should not be same!")
+                }
                 messageApi.open({
                     key,
                     type: 'loading',
@@ -46,13 +59,15 @@ const TransactionMessage = (props: Props) => {
                     content: 'Sent',
                 });
             }else{
-                throw new Error("Fill all the required values");
+                throw new WalletError("Fill all the required values");
             }
         }catch(e){
-            messageApi.open({
-                type: 'error',
-                content: 'Something went wrong! Please try again later',
-            });
+            if(e instanceof WalletError){
+                messageApi.open({
+                    type: 'error',
+                    content: e.errormsg,
+                });
+            }
         }
   };
 
