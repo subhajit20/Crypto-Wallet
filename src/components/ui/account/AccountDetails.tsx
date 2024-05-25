@@ -1,6 +1,5 @@
 'use client'
 import React,{useEffect, useState} from 'react';
-import API_KEY from '../api';
 import { HDNodeWallet, ethers, EtherscanProvider
  } from 'ethers';
 import AccountAddressCopy from './AccountAddressCopy';
@@ -10,6 +9,9 @@ import SendEthModal from '../modal/SendEthModal';
 import TransactionList from './TransactionList';
 import Spinner from '../icons/Spinner';
 import { useRouter } from 'next/navigation';
+import ShowTransactionDetails from '../modal/ShowTransactionDetails';
+import { selectUser } from '@/features/userSlice';
+import { useAppSelector } from '@/store/hook';
 
 type Props = {
     address?: string
@@ -20,6 +22,7 @@ const AccountDetails = (props: Props) => {
     const [balance,setBalance] = useState<string | null>();
     const [etherScanPr,setEtherScanPr] = useState<EtherscanProvider>();
     const router = useRouter();
+    const { transaction } = useAppSelector(selectUser);
 
     useEffect(()=>{
         async function getingo() {
@@ -85,6 +88,11 @@ const AccountDetails = (props: Props) => {
                         value={balance}
                         provider={etherScanPr}
                     />
+                    {
+                        transaction !== null && <ShowTransactionDetails
+                            trs={transaction}
+                        />
+                    }
                     <AccountAddressCopy address={fullAddess!} />
                     <AccountBalance balance={balance!} />
                     <SendEther />
