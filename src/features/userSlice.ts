@@ -37,13 +37,16 @@ const userSlice = createSlice({
     setPassword:(state,action: PayloadAction<PayloadPasswordInterface>) =>{
       state.password = action.payload.password;
     },
-    getTransaction:(state,action:PayloadAction<PayloadTransactionInterface>)=>{
+    setTransaction:(state,action:PayloadAction<PayloadTransactionInterface>)=>{
       state.transaction = action.payload.trs;
+    },
+    clearTransaction:(state,acyion)=>{
+      state.transaction = null;
     }
 
   },
 });
 
-export const { createAccount, setPassword, getTransaction } = userSlice.actions;
+export const { createAccount, setPassword, setTransaction, clearTransaction } = userSlice.actions;
 export const selectUser = (state: RootState) => state.userReducer;
 export default userSlice.reducer;

@@ -20,8 +20,8 @@ type Props = {
 
 const TransactionMessage = (props: Props) => {
     const { toAddress, provider, wei } = props;
-  const [messageApi, contextHolder] = message.useMessage();
-  const key = 'updatable';
+    const [messageApi, contextHolder] = message.useMessage();
+    const key = 'updatable';
 
   const sendEther = async () => {
         console.log("Sending")

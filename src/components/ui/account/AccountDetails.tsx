@@ -88,11 +88,6 @@ const AccountDetails = (props: Props) => {
                         value={balance}
                         provider={etherScanPr}
                     />
-                    {
-                        transaction !== null && <ShowTransactionDetails
-                            trs={transaction}
-                        />
-                    }
                     <AccountAddressCopy address={fullAddess!} />
                     <AccountBalance balance={balance!} />
                     <SendEther />
